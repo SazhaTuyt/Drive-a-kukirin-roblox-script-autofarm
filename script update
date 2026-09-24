@@ -4,63 +4,19 @@ screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
 button.Position = UDim2.new(0.5, -100, 0.8, 0)
-button.Text = "ФАРМ: ВИМК"
-button.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+button.Text = "ФАРМ"
 button.Parent = screenGui
 
-local isFarming = false
-
 button.Activated:Connect(function()
-    local character = game.Players.LocalPlayer.Character
-    if not character then return end
-    
-    local root = character:FindFirstChild("HumanoidRootPart")
-    local humanoid = character:FindFirstChildOfClass("Humanoid")
-    if not root or not humanoid then return end
+    local root = game.Players.LocalPlayer.Character.HumanoidRootPart
 
-    isFarming = not isFarming
-
-    if isFarming then
-        button.Text = "ФАРМ: ВВІМК"
-        button.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
-
-        keypress(0x57)
-        
-        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, false)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Running, false)
-
-        task.spawn(function()
-            while isFarming do
-                local x = 250
-                local y = 6
-                local z = 600
-                
-                root.CFrame = CFrame.new(x, y, z)
-                
-                for j = 1, 100 do
-                    if not isFarming then break end 
-                    
-                    root.CFrame = CFrame.new(x, y, z) * CFrame.Angles(math.rad(45), 0, 0)
-                    z = z + 1
-                    task.wait(0)
-                end
-            end
-        end)
-    else
-        button.Text = "ФАРМ: ВИМК"
-        button.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-
-        if keyrelease then 
-            keyrelease(0x57) 
+    root.CFrame = CFrame.new(243, 6, 475)
+    root.CFrame = root.CFrame + Vector3.new(0, 0, 500)
+    for i = 1, 999999 do
+        for i = 1, 100 do
+            root.CFrame = root.CFrame + Vector3.new(2, 0, 5)
+            wait()
         end
-        
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, true)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, true)
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Running, true)
-        humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+        root.CFrame = root.CFrame + Vector3.new(-200, 0, -500)
     end
 end)
