@@ -30,7 +30,7 @@
 
 ```lua
 -- Скопіюй та встав цей код у свій експлойт
-loadstring(game:HttpGet("https://githubusercontent.com"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SazhaTuyt/Drive-a-kukirin-roblox-script-autofarm/refs/heads/main/script"))()
 ```
 ---
 
