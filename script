@@ -1,0 +1,23 @@
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 200, 0, 50)
+button.Position = UDim2.new(0.5, -100, 0.8, 0)
+button.Text = "ФАРМ"
+button.Parent = screenGui
+
+button.Activated:Connect(function()
+    local root = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+    root.CFrame = CFrame.new(243, 6, 475)
+    root.CFrame = root.CFrame + Vector3.new(0, 0, 500)
+    for i = 1, 999999 do
+        for i = 1, 100 do
+            root.CFrame = root.CFrame + Vector3.new(2, 0, 5)
+            wait()
+        end
+        root.CFrame = root.CFrame + Vector3.new(-200, 0, -500)
+    end
+end)
+
